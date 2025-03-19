@@ -20,18 +20,13 @@ class Lang
         $key = Lang::sanitize($key);
         if (isset($_L[$key])) {
             return $_L[$key];
-        } else if (isset($_L[$key])) {
-            return $_L[$key];
         } else {
             $iso = Lang::getIsoLang()[$config['language']];
             if (empty($iso)) {
                 return $val;
             }
             if (!empty($iso) && !empty($val) && $iso != 'en') {
-                $temp = Lang::translate($val, $iso);
-                if (!empty($temp)) {
-                    $val = $temp;
-                }
+                $val = "[$iso] " . $val;
             }
             $_L[$key] = $val;
             file_put_contents($lan_file, json_encode($_L, JSON_PRETTY_PRINT));
