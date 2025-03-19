@@ -39,6 +39,7 @@
             $.getJSON("./version.json?" + Math.random(), function(data) {
                 var localVersion = data.version;
                 $('#version').html('Version: ' + localVersion);
+{if $_c['new_version_notify'] == 'forced'}
                 $.getJSON(
                     "https://raw.githubusercontent.com/hotspotbilling/phpnuxbill/master/version.json?" +
                     Math
@@ -68,6 +69,7 @@
                             }
                         }
                     });
+{/if}
             });
 
         });
